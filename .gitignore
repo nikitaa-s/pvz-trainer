@@ -1,62 +1,65 @@
+# MAC OS
+.DS_Store
+
+# AppCode
+.idea
+
 # Xcode
-#
-# gitignore contributors: remember to update Global/Xcode.gitignore, Objective-C.gitignore & Swift.gitignore
-
-## User settings
+xcuserdata
 xcuserdata/
+*.xcodeproj
+*.xcworkspace
+*.xccheckout
+*.xcuserstate
+*.xcscmblueprint
+*.orig
+IDEWorkspaceChecks.plist
+DerivedData/
 
-## Obj-C/Swift specific
-*.hmap
-
-## App packaging
-*.ipa
-*.dSYM.zip
-*.dSYM
-
-## Playgrounds
-timeline.xctimeline
-playground.xcworkspace
-
-# Swift Package Manager
-#
-# Add this line if you want to avoid checking in source code from Swift Package Manager dependencies.
-# Packages/
-# Package.pins
-# Package.resolved
-# *.xcodeproj
-#
-# Xcode automatically generates this directory with a .xcworkspacedata file and xcuserdata
-# hence it is not needed unless you have added a package configuration file to your project
-# .swiftpm
-
-.build/
+# VSCode
+.vscode/
 
 # CocoaPods
-#
-# We recommend against adding the Pods directory to your .gitignore. However
-# you should judge for yourself, the pros and cons are mentioned at:
-# https://guides.cocoapods.org/using/using-cocoapods.html#should-i-check-the-pods-directory-into-source-control
-#
-# Pods/
-#
-# Add this line if you want to avoid checking in source code from the Xcode workspace
-# *.xcworkspace
+Pods/
+*.gem
 
 # Carthage
-#
-# Add this line if you want to avoid checking in source code from Carthage dependencies.
-# Carthage/Checkouts
+Carthage/
 
-Carthage/Build/
+# Swift package manager
+.build/
+Packages/
+.swiftpm/
 
-# fastlane
-#
-# It is recommended to not store the screenshots in the git repo.
-# Instead, use fastlane to re-generate the screenshots whenever they are needed.
-# For more information about the recommended setup visit:
-# https://docs.fastlane.tools/best-practices/source-control/#source-control
+# Indep
+.indepCaches/
 
-fastlane/report.xml
-fastlane/Preview.html
-fastlane/screenshots/**/*.png
-fastlane/test_output
+# Tuist
+/Tuist/Package.swift
+Derived/
+/Tuist.swift
+/Workspace.swift
+**/Project.swift
+*.workspace-state.json
+
+# SwiftLint
+Lint/reports.html
+Lint/benchmark_rules_*.txt
+Lint/benchmark_files_*.txt
+Lint/derived-reports.txt
+.generatedLint/
+
+# Explicitly ignored (e.g.: code generated files)
+*.ignored*
+
+# Code coverage
+CodeCoverage/scripts/check-and-report-code-coverage/generate-html-summary/htmls
+CodeCoverage/scripts/check-and-report-code-coverage/find-code-coverage-violations/html-report
+CodeCoverage/data/*.ignored.json
+**/Manifestfile.lock
+
+# Screenshots
+*.actual.png
+
+# Debugging
+debugging.local.config
