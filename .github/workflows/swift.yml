@@ -1,0 +1,89 @@
+name: iOS CI (Tuist)
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+jobs:
+  build:
+    runs-on: macos-latest
+
+    defaults:
+      run:
+        working-directory: PvzTrainer
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install Tuist
+        run: |
+          brew update
+          if brew list tuist >/dev/null 2>&1; then
+            brew upgrade tuist
+          else
+            brew install tuist
+          fi
+
+      - name: Install SwiftLint
+        run: |
+          brew update
+          if brew list swiftlint >/dev/null 2>&1; then
+            brew upgrade swiftlint
+          else
+            brew install swiftlint
+          fi
+
+      - name: Cache Tuist & SwiftPM
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.tuist-cache
+            ~/.tuist
+            ~/Library/Caches/org.swift.swiftpm
+            ~/Library/Developer/Xcode/DerivedData
+          key: ${{ runner.os }}-tuist-spm-${{ hashFiles('PvzTrainer/Tuist/Package.resolved') }}
+          restore-keys: |
+            ${{ runner.os }}-tuist-spm-
+
+      # ВАЖНО: подтянуть external dependencies из Tuist/Package.swift
+      - name: Tuist install (external dependencies)
+        run: tuist install
+
+      # Генерируем Xcode workspace из манифестов Tuist
+      - name: Generate Xcode workspace
+        run: tuist generate --no-open
+
+      # 0) Выбор симулятора
+      - name: Select iOS Simulator UDID
+        run: |
+          UDID=$(
+            xcrun simctl list devices available \
+            | awk -F '[()]' '/iPhone/{print $2; exit}'
+          )
+
+          if [ -z "$UDID" ]; then
+            echo "No available iPhone simulators found"
+            xcrun simctl list devices available
+            exit 1
+          fi
+
+          echo "SIMULATOR_UDID=$UDID" >> "$GITHUB_ENV"
+          echo "Selected simulator UDID: $UDID"
+
+      
+      # 1) Сборка проекта
+      - name: Build
+        run: |
+          xcodebuild build \
+            -workspace "PvzTrainer.xcworkspace" \
+            -scheme "PvzTrainer App" \
+            -configuration Debug \
+            -destination "id=$SIMULATOR_UDID" \
+            -derivedDataPath "../Build/DerivedData"
+
+      # 2) Прогон SwiftLint
+      - name: SwiftLint
+        run: swiftlint lint --strict

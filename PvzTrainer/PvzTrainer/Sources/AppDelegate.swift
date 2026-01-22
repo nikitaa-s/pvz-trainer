@@ -2,11 +2,14 @@ import UIKit
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
-    
+
     // Экран, на который будут накладываться другие UIView элементы
     var window: UIWindow?
-    
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+
+    func application(
+        _ application: UIApplication,
+        didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
+    ) -> Bool {
         // Override point for customization after application launch.
         window = UIWindow(frame: UIScreen.main.bounds)
         // Для назначения этого window главным
