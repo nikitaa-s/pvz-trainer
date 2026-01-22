@@ -35,11 +35,7 @@ Packages/
 .indepCaches/
 
 # Tuist
-/Tuist/Package.swift
 Derived/
-/Tuist.swift
-/Workspace.swift
-**/Project.swift
 *.workspace-state.json
 
 # SwiftLint
