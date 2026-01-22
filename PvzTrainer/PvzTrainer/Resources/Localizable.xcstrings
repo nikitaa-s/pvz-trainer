@@ -1,0 +1,16 @@
+{
+  "sourceLanguage" : "ru",
+  "strings" : {
+    "Привет" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "hello"
+          }
+        }
+      }
+    }
+  },
+  "version" : "1.0"
+}
