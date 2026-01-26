@@ -22,8 +22,7 @@ let mainAppTarget: Target = .target(
     dependencies: mainAppDependencies(),
     settings: nil
 )
-    
-    
+
 let project = Project(
     name: "PvzTrainer",
     options: .options(
@@ -51,6 +50,6 @@ let project = Project(
 
 func mainAppDependencies() -> [TargetDependency] {
     [
-        .external(name: "Alamofire")
+        .external(name: "Alamofire"),
     ]
 }

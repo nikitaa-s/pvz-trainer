@@ -12,6 +12,6 @@
 let package = Package(
     name: "PvzTrainerDependencies",
     dependencies: [
-        .package(url: "https://github.com/Alamofire/Alamofire", from: "5.11.0")
+        .package(url: "https://github.com/Alamofire/Alamofire", from: "5.11.0"),
     ]
 )

@@ -2,6 +2,7 @@
   "sourceLanguage" : "ru",
   "strings" : {
     "Привет" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {

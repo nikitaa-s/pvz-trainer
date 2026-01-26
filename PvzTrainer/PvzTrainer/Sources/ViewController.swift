@@ -8,5 +8,4 @@ class ViewController: UIViewController {
         print(String(localized: "Привет"))
     }
 
-
 }
