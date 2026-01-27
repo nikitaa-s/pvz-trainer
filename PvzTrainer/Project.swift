@@ -50,6 +50,9 @@ let project = Project(
 
 func mainAppDependencies() -> [TargetDependency] {
     [
-        .external(name: "Alamofire"),
+        .project(
+            target: "RunLinterOnDiff",
+            path: .relativeToRoot("RunLinterOnDiff")
+        ),
     ]
 }

@@ -1,0 +1,7 @@
+excluded:
+  - Tuist/.build
+  - "**/Derived/"
+
+disabled_rules:
+  - trailing_comma
+

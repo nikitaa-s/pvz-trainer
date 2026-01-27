@@ -1,0 +1,30 @@
+#!/bin/bash
+
+main() {
+    export PATH="/opt/homebrew/bin:/usr/local/bin:$PATH"
+
+    ensure_not_on_ci_or_exit
+
+    prepare_environment
+
+    swiftlint lint --reporter xcode
+}
+
+ensure_not_on_ci_or_exit() {
+    if [ "$IS_ON_BUILD_MACHINE" = "true" ]; then
+        log "Skipping xcode-prebuild-lint, because not running via Xcode"
+        exit 0
+    fi
+}
+
+prepare_environment() {
+    # Папка скрипта
+    SCRIPT_ROOT="$(cd "$(dirname "$0")" && pwd)"
+
+    # Корень git-репозитория (корень проекта)
+    PROJECT_ROOT="$(git -C "$SCRIPT_ROOT" rev-parse --show-toplevel)"
+
+    cd "$PROJECT_ROOT" || exit 1
+}
+
+main
